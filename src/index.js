@@ -20,7 +20,7 @@ function Widget() {
     );
 }
 
-const NAMES_OF_MONTHS = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const NAMES_OF_MONTHS = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const DAYS_IN_MONTH = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const now = new Date();
 
@@ -31,7 +31,8 @@ function DatePicker(props) {
 
     let onMonthChange = function(mon) {
         if (Number.isNaN(mon)) {
-            mon = month;
+            setMonth(mon);
+            return;
         } if (mon < 1) {
             mon = 1;
         } else if (mon > 12) {
@@ -46,6 +47,10 @@ function DatePicker(props) {
     }
 
     let onDayChange = function(day) {
+        if (Number.isNaN(day)) {
+            setDay(day);
+            return;
+        }
         let daysInMonth = DAYS_IN_MONTH[month];
         if (day < 1) {
             day = 1;
@@ -56,7 +61,9 @@ function DatePicker(props) {
     }
 
     let onSubmit = function(evt) {
-        props.lookup(month, day)
+        if (month && day) {
+            props.lookup(month, day)    
+        }
         evt.preventDefault();
     }
 
@@ -66,13 +73,13 @@ function DatePicker(props) {
                 <div className="col col-xs-12">
                     <label htmlFor="month" className="form-label">Month:</label>
                     <div className="input-group">
-                        <input id="month" className="form-control" type="number" value={month} onChange={(v) => onMonthChange(v.target.valueAsNumber)}/>
+                        <input id="month" className="form-control" type="number" required value={month} onChange={(v) => onMonthChange(v.target.valueAsNumber)}/>
                         <span className="input-group-text">{monthName}</span>
                     </div>
                 </div>
                 <div className="col col-xs-12">
                     <label htmlFor="day" className="form-label">Day:</label>
-                    <input id="day" className="form-control" type="number" value={day} onChange={(v) => onDayChange(v.target.valueAsNumber)}/>
+                    <input id="day" className="form-control" type="number" required value={day} onChange={(v) => onDayChange(v.target.valueAsNumber)}/>
                 </div>
                 <div className="col-auto snap-to-bottom">
                     <input type="submit" className="btn btn-primary"/>
