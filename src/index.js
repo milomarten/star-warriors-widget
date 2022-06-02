@@ -2,6 +2,19 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
+import aries from './zodiac/aries.png';
+import taurus from './zodiac/taurus.png';
+import gemini from './zodiac/gemini.png';
+import cancer from './zodiac/cancer.png';
+import leo from './zodiac/leo.png';
+import virgo from './zodiac/virgo.png';
+import libra from './zodiac/libra.png';
+import scorpius from './zodiac/scorpius.png';
+import sagittarius from './zodiac/sagittarius.png';
+import capricorn from './zodiac/capricorn.png';
+import aquarius from './zodiac/aquarius.png';
+import pisces from './zodiac/pisces.png';
+
 function Widget() {
     let [date, setDate] = useState([0, 0]);
     let propogate = function(month, day) {
@@ -93,62 +106,64 @@ function DatePicker(props) {
 const ZODIAC = [
     {
         name: "Aries",
-        symbol: "♈︎",
+        symbol: aries,
+        an: true,
         terms: ["Evasive", "Swift"]
     },
     {
         name: "Taurus",
-        symbol: "♉︎",
+        symbol: taurus,
         terms: ["Chaotic", "Random"]
     },
     {
         name: "Gemini",
-        symbol: "♊︎",
+        symbol: gemini,
         terms: ["Repeating", "Persistant"]
     },
     {
         name: "Cancer",
-        symbol: "♋︎",
+        symbol: cancer,
         terms: ["Resistant", "Steady"]
     },
     {
         name: "Leo",
-        symbol: "♌︎",
+        symbol: leo,
         terms: ["Unyielding", "Forceful"]
     },
     {
         name: "Virgo",
-        symbol: "♍︎",
+        symbol: virgo,
         terms: ["Bolstering", "Empowering"]
     },
     {
         name: "Libra",
-        symbol: "♎︎",
+        symbol: libra,
         terms: ["Disruptive", "Harmonic"]
     },
     {
-        name: "Scorpio",
-        symbol: "♏︎",
+        name: "Scorpius",
+        symbol: scorpius,
         terms: ["Manipulative", "Controlled"]
     },
     {
-        name: "Saggitarius",
-        symbol: "♐︎",
+        name: "Sagittarius",
+        symbol: sagittarius,
         terms: ["Deterministic", "Focused"]
     },
     {
         name: "Capricorn",
-        symbol: "♑︎",
+        symbol: capricorn,
         terms: ["Fluid", "Turbulent"]
     },
     {
         name: "Aquarius",
-        symbol: "♒︎",
+        symbol: aquarius,
+        an: true,
         terms: ["Volatile", "Instant"]
     },
     {
         name: "Pisces",
-        symbol: "♓︎",
+        symbol: pisces,
         terms: ["Overwhelming", "Hindering"]
     }
 ];
@@ -332,8 +347,8 @@ function Results(props) {
 
         return (
             <div>
-                <h2 className="text-center" style={colorStyle}>{z.symbol}</h2>
-                <p>You were born on {month}/{day}. That means you're a {z.name}!</p>
+                <img className="rounded mx-auto d-block" src={z.symbol} alt={z.name + " symbol"} width="200px" />
+                <p>You were born on {month}/{day}. That means you're {z.an ? "an" : "a"} {z.name}!</p>
                 <p>
                     Star Warriors born on this day are typically {z.terms[0]} and {z.terms[1]}, and
                     typically have a natural affinity for {affinity.name}. {affinity.flavor}
