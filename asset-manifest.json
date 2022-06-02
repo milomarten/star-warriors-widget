@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/star-warriors-widget/static/css/main.f7b45f7c.css",
-    "main.js": "/star-warriors-widget/static/js/main.875d58ba.js",
+    "main.js": "/star-warriors-widget/static/js/main.53504567.js",
     "static/media/cancer.png": "/star-warriors-widget/static/media/cancer.0d9ab7a367a4416dd012.png",
     "static/media/virgo.png": "/star-warriors-widget/static/media/virgo.d3626b2949b814fc0ab9.png",
     "static/media/scorpius.png": "/star-warriors-widget/static/media/scorpius.8e3784fc3c4f34839a87.png",
@@ -16,10 +16,10 @@
     "static/media/libra.png": "/star-warriors-widget/static/media/libra.d6905414f3dd5af8ba32.png",
     "index.html": "/star-warriors-widget/index.html",
     "main.f7b45f7c.css.map": "/star-warriors-widget/static/css/main.f7b45f7c.css.map",
-    "main.875d58ba.js.map": "/star-warriors-widget/static/js/main.875d58ba.js.map"
+    "main.53504567.js.map": "/star-warriors-widget/static/js/main.53504567.js.map"
   },
   "entrypoints": [
     "static/css/main.f7b45f7c.css",
-    "static/js/main.875d58ba.js"
+    "static/js/main.53504567.js"
   ]
 }
