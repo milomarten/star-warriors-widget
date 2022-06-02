@@ -370,7 +370,7 @@ function Footer () {
     return (
         <footer>
             <div className="container">
-            Created with 💚 by Milo Marten. Star Warriors is created and owned by Scott Frasier. Read it <a href="https://www.starwarriorscomic.com/">here</a>!
+            Created with 💚 by Milo Marten. Star Warriors is created and owned by Scott Fraser. Read it <a href="https://www.starwarriorscomic.com/">here</a>!
             </div>
         </footer>
     )
