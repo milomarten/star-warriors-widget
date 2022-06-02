@@ -39,7 +39,6 @@ const now = new Date();
 
 function DatePicker(props) {
     let [month, setMonth] = useState(now.getMonth() + 1);
-    let [monthName, setMonthName] = useState(NAMES_OF_MONTHS[now.getMonth() + 1]);
     let [day, setDay] = useState(now.getDate());
 
     let onMonthChange = function(mon) {
@@ -56,7 +55,6 @@ function DatePicker(props) {
             setDay(daysInMonth);
         }
         setMonth(mon);
-        setMonthName(NAMES_OF_MONTHS[mon]);
     }
 
     let onDayChange = function(day) {
@@ -87,7 +85,7 @@ function DatePicker(props) {
                     <label htmlFor="month" className="form-label">Month:</label>
                     <div className="input-group">
                         <input id="month" className="form-control" type="number" required value={month} onChange={(v) => onMonthChange(v.target.valueAsNumber)}/>
-                        <span className="input-group-text">{monthName}</span>
+                        <span className="input-group-text">{NAMES_OF_MONTHS[month]}</span>
                     </div>
                 </div>
                 <div className="col col-xs-12">
@@ -253,7 +251,7 @@ const AFFINITIES = [
 ]
 
 function get_affinity_idx(hday) {
-    let as_circle = hday * 360 / 365;
+    let as_circle = hday * 360 / 366;
     for (let i = 0; i < 6; i++) {
         let start = 15 + (60 * i);
         let end = 60 + start;
@@ -297,14 +295,14 @@ const DAY_COLORS = [
 
 function get_day_color(jday) {
     for (let idx = 0; idx < DAY_COLORS.length; idx++) {
-        let entry = DAY_COLORS[idx];
-        if (entry[0] === jday) {
-            return toRgb(entry[1], entry[2], entry[3]);
-        } else if (entry[0] > jday) {
-            let prev_entry = DAY_COLORS[idx - 1];
-            let red = lerp(prev_entry[0], entry[0], prev_entry[1], entry[1], jday);
-            let green = lerp(prev_entry[0], entry[0], prev_entry[2], entry[2], jday);
-            let blue = lerp(prev_entry[0], entry[0], prev_entry[3], entry[3], jday);
+        let [e, r, g, b] = DAY_COLORS[idx];
+        if (e === jday) {
+            return toRgb(r, g, b);
+        } else if (e > jday) {
+            let [e2, r2, g2, b2] = DAY_COLORS[idx - 1];
+            let red = lerp(e2, e, r2, r, jday);
+            let green = lerp(e2, e, g2, g, jday);
+            let blue = lerp(e2, e, b2, b, jday);
             return toRgb(red, green, blue);
         }
     }
@@ -327,8 +325,7 @@ function toRgb(r, g, b) {
 }
 
 function Results(props) {
-    let month = props.date[0];
-    let day = props.date[1];
+    let [month, day] = props.date;
 
     if (month === 0) {
         return (<div></div>)
