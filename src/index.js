@@ -15,7 +15,7 @@ import capricorn from './zodiac/capricorn.png';
 import aquarius from './zodiac/aquarius.png';
 import pisces from './zodiac/pisces.png';
 
-function Widget() {
+export function Widget() {
     let [date, setDate] = useState([0, 0]);
     let propogate = function(month, day) {
         setDate([month, day])
@@ -37,7 +37,7 @@ const NAMES_OF_MONTHS = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "A
 const DAYS_IN_MONTH = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const now = new Date();
 
-function DatePicker(props) {
+export function DatePicker(props) {
     let [month, setMonth] = useState(now.getMonth() + 1);
     let [day, setDay] = useState(now.getDate());
 
@@ -324,7 +324,7 @@ function toRgb(r, g, b) {
     return rHex + gHex + bHex;
 }
 
-function Results(props) {
+export function Results(props) {
     let [month, day] = props.date;
 
     if (month === 0) {
