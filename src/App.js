@@ -13,6 +13,11 @@ import capricorn from './zodiac/capricorn.png';
 import aquarius from './zodiac/aquarius.png';
 import pisces from './zodiac/pisces.png';
 
+import calix from './faction/calix.png';
+import nummus from './faction/nummus.png';
+import virgula from './faction/virgula.png';
+import gladius from './faction/gladius.png';
+
 export function Widget() {
     let [date, setDate] = useState([0, 0]);
     let propogate = function(month, day) {
@@ -48,7 +53,7 @@ export function DatePicker(props) {
         } else if (mon > 12) {
             mon = 12;
         }
-        let daysInMonth = DAYS_IN_MONTH[mon];
+        let daysInMonth = day
         if (day > daysInMonth) {
             setDay(daysInMonth);
         }
@@ -322,6 +327,44 @@ function toRgb(r, g, b) {
     return rHex + gHex + bHex;
 }
 
+// Star Warriors are divided into one of four factions.
+// These are not tied directly to affinity, but all factions have a set of three afinities that tend to join their ranks.
+// As such, any given person has (theoretically) two factions they could join.
+const FACTIONS = [
+    {
+        name: "Calix",
+        badge: calix,
+        flavor: "The caring and protecting.",
+        description: "A Calix reinforces their allies with their supportive abilities.",
+        affinities: [2, 1, 5]
+    },
+    {
+        name: "Nummus",
+        badge: nummus,
+        flavor: "The creative and astute.",
+        description: "A Nummus shines with their ideas and strategies in missions.",
+        affinities: [0, 4, 3]
+    },
+    {
+        name: "Virgula",
+        badge: virgula,
+        flavor: "The skilled and mystical.",
+        description: "A Virgula turns the tables with ease using specialized abilities.",
+        affinities: [5, 4, 3]
+    },
+    {
+        name: "Gladius",
+        badge: gladius,
+        flavor: "The valiant and combating.",
+        description: "A Gladius gives their all, making them formidable combatants.",
+        affinities: [2, 1, 0]
+    },
+];
+
+function get_factions(affinity_idx) {
+    return FACTIONS.filter(f => f.affinities.includes(affinity_idx));
+}
+
 export function Results(props) {
     let [month, day] = props.date;
 
@@ -331,7 +374,11 @@ export function Results(props) {
         let z = ZODIAC[get_zodiac_idx(month, day)];
         let julian = get_julian(month, day);
         let h_julian = get_zodiac_julian(julian);
-        let affinity = AFFINITIES[get_affinity_idx(h_julian)];
+        let affinity_idx = get_affinity_idx(h_julian);
+
+        let affinity = AFFINITIES[affinity_idx];
+        let factions = get_factions(affinity_idx);
+        console.log(factions);
         let colorStyle = {
             color: "#" + get_day_color(julian)
         };
@@ -342,26 +389,26 @@ export function Results(props) {
 
         return (
             <div>
-                <img className="rounded mx-auto d-block" src={z.symbol} alt={z.name + " symbol"} width="200px" />
-                <p>You were born on {month}/{day}. That means you're {z.an ? "an" : "a"} {z.name}!</p>
-                <p>
+                <img className="mx-auto d-block" src={z.symbol} alt={z.name + " symbol"} width="200px" />
+                <div>You were born on {month}/{day}. That means you're {z.an ? "an" : "a"} {z.name}!</div>
+                <div>
                     Star Warriors born on this day are typically {z.terms[0]} and {z.terms[1]}, and
                     typically have a natural affinity for {affinity.name}. {affinity.flavor}
-                </p>
-                <p>
+                </div>
+                <div>
                     Your Cosmic Color is: 
                     <div className="input-group">
                         <input type="color" id="cosmic-color" className="form-control form-control-color" value={colorStyle.color} readOnly/>
                         <input type="text" className="form-control" value={colorStyle.color} readOnly />
                         <button className="btn btn-outline-secondary" type="button" onClick={copy_to_clipboard}>Copy RGB to Clipboard</button>
                     </div>
-                </p>
+                </div>
             </div>
         );
     }
 }
 
-function Footer () {
+export function Footer () {
     return (
         <footer>
             <div className="container">
