@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/star-warriors-widget/static/css/main.f7b45f7c.css",
-    "main.js": "/star-warriors-widget/static/js/main.573df558.js",
+    "main.css": "/star-warriors-widget/static/css/main.73ac69ec.css",
+    "main.js": "/star-warriors-widget/static/js/main.cf982ca1.js",
     "static/media/nummus.png": "/star-warriors-widget/static/media/nummus.86eb83fc801839633e25.png",
     "static/media/virgula.png": "/star-warriors-widget/static/media/virgula.69442ae818677cc303e5.png",
     "static/media/gladius.png": "/star-warriors-widget/static/media/gladius.51a5c5943be9080753eb.png",
@@ -19,11 +19,11 @@
     "static/media/gemini.png": "/star-warriors-widget/static/media/gemini.2d43d3cbb8afbc5c03fd.png",
     "static/media/libra.png": "/star-warriors-widget/static/media/libra.d6905414f3dd5af8ba32.png",
     "index.html": "/star-warriors-widget/index.html",
-    "main.f7b45f7c.css.map": "/star-warriors-widget/static/css/main.f7b45f7c.css.map",
-    "main.573df558.js.map": "/star-warriors-widget/static/js/main.573df558.js.map"
+    "main.73ac69ec.css.map": "/star-warriors-widget/static/css/main.73ac69ec.css.map",
+    "main.cf982ca1.js.map": "/star-warriors-widget/static/js/main.cf982ca1.js.map"
   },
   "entrypoints": [
-    "static/css/main.f7b45f7c.css",
-    "static/js/main.573df558.js"
+    "static/css/main.73ac69ec.css",
+    "static/js/main.cf982ca1.js"
   ]
 }
