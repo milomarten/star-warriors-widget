@@ -390,12 +390,12 @@ export function Results(props) {
         return (
             <div>
                 <img className="mx-auto d-block" src={z.symbol} alt={z.name + " symbol"} width="200px" />
-                <div>You were born on {month}/{day}. That means you're {z.an ? "an" : "a"} {z.name}!</div>
-                <div>
+                <div className="pb-2">You were born on {month}/{day}. That means you're {z.an ? "an" : "a"} {z.name}!</div>
+                <div className="pb-2">
                     Star Warriors born on this day are typically {z.terms[0]} and {z.terms[1]}, and
                     typically have a natural affinity for {affinity.name}. {affinity.flavor}
                 </div>
-                <div>
+                <div className="pb-2">
                     Your Cosmic Color is: 
                     <div className="input-group">
                         <input type="color" id="cosmic-color" className="form-control form-control-color" value={colorStyle.color} readOnly/>
@@ -403,9 +403,39 @@ export function Results(props) {
                         <button className="btn btn-outline-secondary" type="button" onClick={copy_to_clipboard}>Copy RGB to Clipboard</button>
                     </div>
                 </div>
+                <div className='pb-2'>
+                    These factions may be interested in you:
+                    <div className='row'>
+                        <Faction data={factions[0]} />
+                        <Faction data={factions[1]} />
+                    </div>
+                </div>
             </div>
         );
     }
+}
+
+export function Faction(props) {
+    let data = props.data;
+
+    return (
+        <div className='col-sm-6'>
+            <div className='card'>
+                <div className='row'>
+                    <div className='col-md-4'>
+                        <img src={data.badge} className='card-img-top' alt={data.name + ' symbol'} />
+                    </div>
+                    <div className='col-md-8'>
+                        <div className='card-body'>
+                            <h5 className='card-title'>{data.name}</h5>
+                            <p className='card-text text-muted'>{data.flavor}</p>
+                            <p className='card-text'>{data.description}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export function Footer () {
