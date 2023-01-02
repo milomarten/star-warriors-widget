@@ -1,24 +1,26 @@
+import React from 'react';
 import { useState } from 'react';
+import Head from 'next/head';
 
-import aries from './zodiac/aries.png';
-import taurus from './zodiac/taurus.png';
-import gemini from './zodiac/gemini.png';
-import cancer from './zodiac/cancer.png';
-import leo from './zodiac/leo.png';
-import virgo from './zodiac/virgo.png';
-import libra from './zodiac/libra.png';
-import scorpius from './zodiac/scorpius.png';
-import sagittarius from './zodiac/sagittarius.png';
-import capricorn from './zodiac/capricorn.png';
-import aquarius from './zodiac/aquarius.png';
-import pisces from './zodiac/pisces.png';
+const aries = '/images/zodiac/aries.png';
+const taurus = '/images/zodiac/taurus.png';
+const gemini = '/images/zodiac/gemini.png';
+const cancer = '/images/zodiac/cancer.png';
+const leo = '/images/zodiac/leo.png';
+const virgo = '/images/zodiac/virgo.png';
+const libra = '/images/zodiac/libra.png';
+const scorpius = '/images/zodiac/scorpius.png';
+const sagittarius = '/images/zodiac/sagittarius.png';
+const capricorn = '/images/zodiac/capricorn.png';
+const aquarius = '/images/zodiac/aquarius.png';
+const pisces = '/images/zodiac/pisces.png';
 
-import calix from './faction/calix.png';
-import nummus from './faction/nummus.png';
-import virgula from './faction/virgula.png';
-import gladius from './faction/gladius.png';
+const calix = '/images/faction/calix.png';
+const nummus = '/images/faction/nummus.png';
+const virgula = '/images/faction/virgula.png';
+const gladius = '/images/faction/gladius.png';
 
-export function Widget() {
+export default function Widget() {
     let [date, setDate] = useState([0, 0]);
     let propogate = function(month, day) {
         setDate([month, day])
@@ -26,12 +28,22 @@ export function Widget() {
 
     return (
         <>
-        <div className="container">
-            <h1>Star Warriors Cosmic Color Lookup!</h1>
+        <Head>
+            <title>Star Warriors Cosmic Color Lookup</title>
+            <link rel="icon" href="star-warriors-widget/favicon.ico" />
+            <link rel="manifest" href="star-warriors-widget/manifest.json" />        
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta name="theme-color" content="#1D1A65" />
+            <meta
+                name="description"
+                content="A widget dedicated to finding Star Warrior cosmic colors given a date"
+            />
+        </Head>
+        <div className="container-fluid root">
             <DatePicker lookup={propogate} />
             <Results date={date} />
+            <Footer />
         </div>
-        <Footer />
         </>
     );
 }
@@ -88,7 +100,7 @@ export function DatePicker(props) {
                     <label htmlFor="month" className="form-label">Month:</label>
                     <div className="input-group">
                         <input id="month" className="form-control" type="number" required value={month} onChange={(v) => onMonthChange(v.target.valueAsNumber)}/>
-                        <span className="input-group-text">{NAMES_OF_MONTHS[month]}</span>
+                        <span className="input-group-text dark-text">{NAMES_OF_MONTHS[month]}</span>
                     </div>
                 </div>
                 <div className="col col-xs-12">
@@ -96,7 +108,7 @@ export function DatePicker(props) {
                     <input id="day" className="form-control" type="number" required value={day} onChange={(v) => onDayChange(v.target.valueAsNumber)}/>
                 </div>
                 <div className="col-auto snap-to-bottom">
-                    <input type="submit" className="btn btn-primary"/>
+                    <input type="submit" className="btn btn-primary" value="Ascend"/>
                 </div>
             </div>
         </form>
@@ -389,7 +401,7 @@ export function Results(props) {
 
         return (
             <div>
-                <img className="mx-auto d-block" src={z.symbol} alt={z.name + " symbol"} width="200px" />
+                <img className="mx-auto d-block" src={"/star-warriors-widget" + z.symbol} alt={z.name + " symbol"} width="200px" />
                 <div className="pb-2">You were born on {month}/{day}. That means you're {z.an ? "an" : "a"} {z.name}!</div>
                 <div className="pb-2">
                     Star Warriors born on this day are typically {z.terms[0]} and {z.terms[1]}, and
@@ -400,7 +412,7 @@ export function Results(props) {
                     <div className="input-group">
                         <input type="color" id="cosmic-color" className="form-control form-control-color" value={colorStyle.color} readOnly/>
                         <input type="text" className="form-control" value={colorStyle.color} readOnly />
-                        <button className="btn btn-outline-secondary" type="button" onClick={copy_to_clipboard}>Copy RGB to Clipboard</button>
+                        <button className="btn btn-outline-primary" type="button" onClick={copy_to_clipboard}>Copy RGB to Clipboard</button>
                     </div>
                 </div>
                 <div className='pb-2'>
@@ -423,7 +435,7 @@ export function Faction(props) {
             <div className='card'>
                 <div className='row'>
                     <div className='col-md-4'>
-                        <img src={data.badge} className='card-img-top' alt={data.name + ' symbol'} />
+                        <img src={"/star-warriors-widget" + data.badge} className='card-img-top' alt={data.name + ' symbol'} width="200px"/>
                     </div>
                     <div className='col-md-8'>
                         <div className='card-body'>
@@ -441,9 +453,8 @@ export function Faction(props) {
 export function Footer () {
     return (
         <footer>
-            <div className="container">
-            Created with 💚 by Milo Marten. Star Warriors is created and owned by Scott Fraser. Read it <a href="https://www.starwarriorscomic.com/">here</a>!
-            </div>
+            <div className='left-footer'><a href="https://www.starwarriorscomic.com/">Star Warriors</a> ©2022 Scott Fraser</div>
+            <div className='right-footer'>Created with 💚 by Milo Marten</div>
         </footer>
     )
 }

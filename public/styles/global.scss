@@ -1,0 +1,69 @@
+// Variable overrides first
+$primary: #abc;
+$enable-shadows: true;
+$prefix: "mo-";
+
+$bg-color: #235; // Lighter (inner) bg color;
+$body-bg: #113; // Darker (outer) bg color;
+$body-color: #def;
+
+BODY {
+    font-family: sans-serif;
+    background: linear-gradient(to right, $body-bg, $bg-color 2%, $bg-color 98%, $body-bg 100%);
+    background-size: 1200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+.snap-to-bottom {
+    align-self: flex-end;
+}
+
+.dark-text {
+    color: $body-bg !important;
+}
+
+.left-footer {
+    position: fixed;
+    line-height: 40px;
+    left: 5px;
+    bottom: 0px;
+    width: 50%;
+    text-align: left;
+}
+
+.right-footer {
+    position: fixed;
+    line-height: 40px;
+    right: 5px;
+    bottom: 0px;
+    width: 50%;
+    text-align: right;
+}
+
+.root {
+    position: relative;
+    padding-top: 1rem;
+    max-width: 1140px;
+    min-height: 100vh;
+}
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+
+@import "~bootstrap/scss/helpers";
+
+@import "~bootstrap/scss/utilities/api";
