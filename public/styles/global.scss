@@ -25,6 +25,11 @@ BODY {
     color: $body-bg !important;
 }
 
+.power-wheel-link {
+    font-size: 1.25rem;
+    text-align: center;
+}
+
 .left-footer {
     position: fixed;
     line-height: 40px;
@@ -32,6 +37,9 @@ BODY {
     bottom: 0px;
     width: 50%;
     text-align: left;
+    color: $body-bg;
+    background-color: $body-color;
+    padding-left: 5px;
 }
 
 .right-footer {
@@ -41,6 +49,9 @@ BODY {
     bottom: 0px;
     width: 50%;
     text-align: right;
+    color: $body-bg;
+    background-color: $body-color;
+    padding-right: 5px;
 }
 
 .root {
