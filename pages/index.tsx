@@ -40,11 +40,11 @@ export function DatePicker(props) {
     let [month, setMonth] = useState(now.getMonth() + 1);
     let [day, setDay] = useState(now.getDate());
 
-    let month_formatted = format(new Date(2020, month - 1), "LLL")
+    let month_formatted = Number.isInteger(month) ? format(new Date(2020, month - 1), "LLL") : ""
 
     let onMonthChange = function(mon: number) {
-        if (Number.isNaN(mon)) {
-            setMonth(mon);
+        if (Number.isNaN(mon) || mon === '') {
+            setMonth(Number.NaN);
             return;
         } else if (mon < 1) {
             mon = 1;
@@ -60,7 +60,7 @@ export function DatePicker(props) {
 
     let onDayChange = function(day: number) {
         if (Number.isNaN(day)) {
-            setDay(day);
+            setDay(Number.NaN);
             return;
         }
         let daysInMonth = DAYS_IN_MONTH[month];
@@ -94,7 +94,7 @@ export function DatePicker(props) {
                     <input id="day" className="form-control" type="number" required value={day} onChange={(v) => onDayChange(v.target.valueAsNumber)}/>
                 </div>
                 <div className="col-auto snap-to-bottom">
-                    <input type="submit" className="btn btn-primary" value="Ascend"/>
+                    <input type="submit" className="btn btn-primary" value="Ascend" disabled={!month || !day}/>
                 </div>
             </div>
         </form>
