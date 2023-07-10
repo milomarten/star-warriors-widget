@@ -43,7 +43,7 @@ export function DatePicker(props) {
     let month_formatted = Number.isInteger(month) ? format(new Date(2020, month - 1), "LLL") : ""
 
     let onMonthChange = function(mon: number) {
-        if (Number.isNaN(mon) || mon === '') {
+        if (Number.isNaN(mon)) {
             setMonth(Number.NaN);
             return;
         } else if (mon < 1) {
